@@ -33,13 +33,14 @@ public class CollectionTestSuite {
     @Test
     public void testOddNumbersExterminatorNormalList() {
         System.out.println("Testing if the list is sorted correctly");
+        //Given
         ArrayList<Integer> simpleNumber = new ArrayList<Integer>();
         ArrayList<Integer> testingList = new ArrayList<Integer>();
         OddNumbersExterminator simpleNumberTest = new OddNumbersExterminator();
-
+        //When
         simpleNumber.addAll(Arrays.asList(1,2,4,7,10,11,15));
         testingList.addAll(Arrays.asList(2,4,10));
-
+        //Then
         ArrayList<Integer> evenList = simpleNumberTest.exterminate(simpleNumber);
         Assert.assertEquals(evenList,testingList);
 
