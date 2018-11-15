@@ -1,40 +1,26 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
-import com.kodilla.stream.iterate.NumbersGenerator;
-import com.kodilla.stream.lambda.ExpressionExecutor;
-import com.kodilla.stream.reference.FunctionalCalculator;
-import com.kodilla.stream.lambda.Executor;
+import com.kodilla.stream.book.Book;
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
+import java.time.*;
 
-
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StreamMain {
     public static void main(String[] args) {
-        ExpressionExecutor expressionExecutor = new ExpressionExecutor();
+        LocalDate date = LocalDate.of(1998,1,1);
+        Forum theUserForum = new Forum();
+        Map<Integer, ForumUser> theResultMapOfForum = theUserForum.getUserList().stream()
+                .filter(forumUser -> forumUser.getSex() == 'M')
+                .filter(forumUser -> forumUser.getDateOfBirth().getYear() < 1999)
+                .filter(forumUser -> forumUser.getNumberOfPosts() >= 1)
+                .collect(Collectors.toMap(ForumUser::getUserId, forumUser -> forumUser ));
 
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a + b);
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a - b);
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a * b);
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a / b);
-
-        System.out.println("Calculating expressions with method references");
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::multiplyAByB);
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::addAToB);
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::subBFromA);
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::divideAByB);
-
-        System.out.println("");
-
-        PoemBeautifier poemBeautifier = new PoemBeautifier();
-
-        poemBeautifier.beautify("Hello World", (tekst) -> " !! " + tekst + " !! ");
-        poemBeautifier.beautify("Welcome in JAVA Course", (tekst) -> tekst.toUpperCase());
-        poemBeautifier.beautify(" This is Module 7 ", (tekst) -> tekst.substring(9, 17));
-        poemBeautifier.beautify("This line will convert all letters l to large", (tekst) -> tekst.replace("l", "L"));
-
-        System.out.println("");
-
-        System.out.println("Using Stream to generate even numbers from 1 to 20");
-        NumbersGenerator.generateEven(20);
+        System.out.println("Forum users after filters: " + theResultMapOfForum.size());
+        theResultMapOfForum.entrySet().stream()
+                .map(entry -> entry.getKey() + ": " + entry.getValue())
+                .forEach(System.out::println);
     }
 }
