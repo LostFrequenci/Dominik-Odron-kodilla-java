@@ -1,9 +1,11 @@
 package com.kodilla.stream;
 
 import com.kodilla.stream.beautifier.PoemBeautifier;
+import com.kodilla.stream.iterate.NumbersGenerator;
 import com.kodilla.stream.lambda.ExpressionExecutor;
 import com.kodilla.stream.reference.FunctionalCalculator;
 import com.kodilla.stream.lambda.Executor;
+
 
 
 public class StreamMain {
@@ -25,9 +27,14 @@ public class StreamMain {
 
         PoemBeautifier poemBeautifier = new PoemBeautifier();
 
-        poemBeautifier.beautify("Hello World", (tekst) -> " !! "+tekst+" !! ");
+        poemBeautifier.beautify("Hello World", (tekst) -> " !! " + tekst + " !! ");
         poemBeautifier.beautify("Welcome in JAVA Course", (tekst) -> tekst.toUpperCase());
-        poemBeautifier.beautify(" This is Module 7 ", (tekst) -> tekst.substring(9,17));
-        poemBeautifier.beautify("This line will convert all letters l to large", (tekst) -> tekst.replace("l","L"));
+        poemBeautifier.beautify(" This is Module 7 ", (tekst) -> tekst.substring(9, 17));
+        poemBeautifier.beautify("This line will convert all letters l to large", (tekst) -> tekst.replace("l", "L"));
+
+        System.out.println("");
+
+        System.out.println("Using Stream to generate even numbers from 1 to 20");
+        NumbersGenerator.generateEven(20);
     }
 }
