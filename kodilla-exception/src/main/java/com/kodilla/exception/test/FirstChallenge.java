@@ -27,7 +27,7 @@ public class FirstChallenge {
 
         FirstChallenge firstChallenge = new FirstChallenge();
 
-        double result = firstChallenge.divide(3, 0);
+        double result = firstChallenge.divide(3, 1);
 
         System.out.println(result);
 
