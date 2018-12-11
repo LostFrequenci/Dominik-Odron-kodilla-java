@@ -40,7 +40,8 @@ public class LibraryTestSuite {
     public void testContext() {
         //Given
         ApplicationContext context =
-                new AnnotationConfigApplicationContext("LibraryConfig");
+                new AnnotationConfigApplicationContext("com.kodilla.spring");
+
         //When & Then
         System.out.println("===== Beans list: ==== >>");
         Arrays.stream(context.getBeanDefinitionNames())
