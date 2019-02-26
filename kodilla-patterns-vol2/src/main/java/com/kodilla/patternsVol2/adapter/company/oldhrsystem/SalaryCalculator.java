@@ -1,0 +1,5 @@
+package com.kodilla.patternsVol2.adapter.company.oldhrsystem;
+
+public interface SalaryCalculator {
+    double TotalSalary(String[][] workers, double[] salaries);
+}
