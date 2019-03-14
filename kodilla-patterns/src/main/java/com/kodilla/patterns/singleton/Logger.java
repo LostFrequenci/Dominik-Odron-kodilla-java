@@ -27,4 +27,6 @@ public class Logger {
     public String getLastLog() {
         return lastLog;
     }
+
+    String[] names = new String[5];
 }
